@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Airline Seat Reservation</title>
+</head>
+<body>
+<h2>Airline Seat Reservation</h2>
+<button onclick="bookSeat()">Book a
+Seat</button>
+<p id="output"></p>
+<script>
+let seats = Array(10).fill(0); // 0 means available,
+1 means booked
+function bookSeat() {
+let name = prompt("Enter your name:");
+let choice = parseInt(prompt("Enter 1 for FirstClass or 2 for Economy:"));
+if (choice === 1) {
+assignSeat(0, 5, "First-Class", name);
+} else if (choice === 2) {
+assignSeat(5, 10,
+"Economy-Class", name);
+} else {
+alert("Invalid choice. Please enter 1 or 2.");
+}
+}
+function assignSeat(start, end, className,
+passenger) {
+for (let i = start; i < end; i++) {
+if (seats[i] === 0) {
+seats[i] = 1;
+document.getElementById("output").inner
+HTML += `<p>Boarding Pass: ${passenger}, Seat ${i
++ 1}, ${className}</p>`;
+return;
+}
+}
+let alternateClass = className === "FirstClass" ? "Economy-Class" : "First-Class";
+let alternateStart = start === 0 ? 5 : 0;
+let alternateEnd = end === 5 ? 10 : 5;
+let acceptOther = confirm(`${className} is
+full. Would you like a seat in ${alternateClass}?`);
+if (acceptOther) {
+assignSeat(alternateStart, alternateEnd,
+alternateClass, passenger);
+} else {
+alert("Next flight leaves in 3 hours.");
+}
+}
+</script>
+</body>
+</html>
