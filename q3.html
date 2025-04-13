@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>23BCE1760</title>
+<style>
+.container {
+width: 300px;
+border: 3px double black;
+padding: 15px;
+font-family: Arial, sans-serif;
+background-color: #f9f9f9;
+}
+.container label, .container input, .container
+select, .container button {
+display: block;
+width: 100%;
+margin: 8px 0;
+}
+.container input, .container select, .container
+button {
+padding: 6px;
+border: 1px solid gray;
+}
+.container div {
+margin-top: 10px;
+border-top: 2px solid black;
+padding-top: 8px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<label><b>BMI Calculator</b>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+</label>
+<label>Enter Your Weight: (in pounds)
+<input type="number" id="weight">
+</label>
+<label>Enter Your Height: (feet)
+<input type="number" id="heightFeet">
+</label>
+<label>(inches)
+<input type="number" id="heightInches">
+</label>
+<button type="button"
+onclick="calculateBMI()">Calculate</button>
+<div>
+<label><b>YOUR BMI</b>
+<input type="text" id="bmiResult" readonly>
+</label>
+</div>
+</div>
+<script>
+function calculateBMI() {
+let weight =
+parseFloat(document.getElementById("weight").val
+ue);
+let heightFeet =
+parseFloat(document.getElementById("heightFeet")
+.value);
+let heightInches =
+parseFloat(document.getElementById("heightInche
+s").value);
+if (isNaN(weight) || isNaN(heightFeet) ||
+isNaN(heightInches)) {
+alert("Please enter valid numbers for weight
+and height.");
+return;
+}
+let heightTotal = (heightFeet * 12) +
+heightInches;
+let bmi = (703 * weight) / (heightTotal *
+heightTotal);
+let category = getBMICategory(bmi);
+document.getElementById("bmiResult").value
+= `${bmi.toFixed(2)} (${category})`;
+}
+function getBMICategory(bmi) {
+if (bmi < 17.5) return "Anorexia";
+if (bmi >= 17.5 && bmi < 19.1) return
+"Underweight";
+if (bmi >= 19.1 && bmi < 25.8) return "Ideal
+range";
+if (bmi >= 25.8 && bmi < 27.3) return
+"Marginally overweight";
+if (bmi >= 27.3 && bmi < 32.0) return
+"Overweight";
+return "Very overweight or Obese";
+}
+</script>
+</body>
+</html>
