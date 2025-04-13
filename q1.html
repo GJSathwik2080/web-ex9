@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>23BCE1760</title>
+</head>
+<body>
+<h2>Temperature Categories</h2>
+<table border="1">
+<tr>
+<th>Temperature (°F)</th>
+<th>Category</th>
+</tr>
+<script>
+let temperatures = [55, 62, 68, 74, 59, 45, 41,
+58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78,
+79, 72, 68, 61, 59, 55, 65];
+let hotDays = 0, pleasantDays = 0, coldDays =
+0;
+temperatures.forEach(temp => {
+let category;
+if (temp >= 85) {
+category = "HOT";
+hotDays++;
+} else if (temp >= 60) {
+category = "PLEASANT";
+pleasantDays++;
+} else {
+category = "COLD";
+coldDays++;
+}
+document.write(`<tr><td>${temp}</td><td>
+${category}</td></tr>`);
+});
+document.write(`</table>`);
+document.write(`<p>HOT Days:
+${hotDays}</p>`);
+document.write(`<p>PLEASANT Days:
+${pleasantDays}</p>`);
+document.write(`<p>COLD Days:
+${coldDays}</p>`);
+</script>
+</table>
+</body>
+</html>
